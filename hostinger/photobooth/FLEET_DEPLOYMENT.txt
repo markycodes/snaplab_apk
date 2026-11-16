@@ -1,0 +1,210 @@
+SNAPLAB FLEET MONITORING - HOSTINGER DEPLOYMENT
+
+The fleet deployment requires the dashboard, API, telemetry endpoint, MySQL
+connection helper, and schema. Email delivery also requires fleet_mailer.php
+and the bundled PHPMailer dependency. Keep private configuration, credentials,
+activation keys, and device/account data out of public packages.
+
+REQUIREMENTS
+- snaplabbooth.com has a working HTTPS certificate.
+- Hostinger PHP 8.1 or newer has PDO MySQL and Sodium enabled.
+- PHP cURL is enabled for Cloudflare Turnstile verification.
+- A Cloudflare Turnstile widget is configured for snaplabbooth.com.
+- A MySQL database and database user have been created in Hostinger.
+- The document root already contains ganap_common.php and the matching
+  private activation_public_key configuration.
+- The protected photobooth_private folder and its access-denial rule remain.
+
+DEPLOY
+1. Back up the current server files and private configuration.
+2. In Hostinger hPanel, create a MySQL database and a dedicated database user.
+   Grant that user access to the fleet database. Keep the database name,
+   username, and password private.
+3. Open phpMyAdmin for that database and import fleet_schema.sql from this
+   package. It creates fleet_accounts, fleet_registered_devices,
+   fleet_device_telemetry, fleet_device_settings, fleet_device_commands,
+   fleet_rate_limits, fleet_password_resets, fleet_device_alerts,
+   fleet_email_reports, fleet_owners, and the PayMongo webhook event table.
+   Re-importing creates missing tables but does not add columns to existing
+   tables; use the feature-specific migrations for an existing database.
+   Existing data is not replaced.
+4. Upload pb_fleet.php, pb_fleet_api.php, pb_fleet_ingest.php,
+   paymongo_identity_webhook.php, paymongo_common.php, paymongo_checkout.php,
+   paymongo_status.php, fleet_db.php, fleet_mailer.php, and the vendor/
+   directory to the
+   snaplabbooth.com document root. The vendor directory contains PHPMailer,
+   which is required for welcome, password recovery, and owner alert emails. Upload
+   the current pb_fleet_ingest.php whenever deploying an app release that adds
+   telemetry settings; an older endpoint may reject reports with
+   invalid_app_settings.
+   fleet_schema.sql only if useful for safekeeping; it is not executed by the
+   site. For an existing Fleet database only, back up the database first. If
+   the PayMongo columns/event table are not already present, run
+   fleet_paymongo_migration.sql once in phpMyAdmin. Next, run
+   fleet_relationships_preflight.sql and resolve any returned rows. Finally,
+   run fleet_relationships_migration.sql once to add the relationships. Do
+   not run either ALTER migration more than once. A fresh database imported
+   from fleet_schema.sql already has these tables and relationships, so skip
+   both migrations. Do not upload the private configuration into the
+   document root.
+   Add the rules in FLEET_REWRITE_RULES.txt to the TOP of the existing
+   public_html/.htaccess so the public Fleet landing page opens at the domain
+   root and login/registration use clean /login and /register URLs. The rules
+   redirect old .php links to those clean URLs. Upload login.php and register.php
+   alongside the other PHP files for compatibility. After sign-in, Fleet
+   displays the dashboard at https://snaplabbooth.com/. Preserve all existing
+   rules and files.
+5. Edit the existing private photobooth_config.php. Preserve all existing
+   settings and secrets, and add the fleet database settings, admin hash,
+   and Turnstile keys inside the returned array:
+
+       'fleet_db_host' => 'localhost',
+       'fleet_db_name' => 'YOUR_DATABASE_NAME',
+       'fleet_db_user' => 'YOUR_DATABASE_USER',
+       'fleet_db_password' => 'YOUR_DATABASE_PASSWORD',
+       'fleet_admin_password_hash' => 'PASTE_A_PASSWORD_HASH_HERE',
+       'fleet_turnstile_site_key' => 'YOUR_TURNSTILE_SITE_KEY',
+       'fleet_turnstile_secret_key' => 'YOUR_TURNSTILE_SECRET_KEY',
+
+   Use the exact database host, name, and username shown by Hostinger.
+   In the Cloudflare dashboard, create a Turnstile widget and allow the
+   snaplabbooth.com hostname. Put its site key and secret key in these
+   settings. The site key is rendered on the login/registration page; the
+   secret key must remain only in photobooth_config.php. Both login and
+   registration fail closed if Turnstile is missing or cannot be verified.
+   Generate the admin password hash on your computer. This PHP command
+   prompts for the password without placing it in command history:
+
+       php -r 'fwrite(STDERR, "Enter password: "); $p = trim(fgets(STDIN)); echo password_hash($p, PASSWORD_DEFAULT), PHP_EOL;'
+
+   Never put the plain password or DB credentials in public files, source
+   control, or the deployment ZIP. Keep them in the protected config.
+   Configure the Cloudflare Turnstile environment variables
+   FLEET_TURNSTILE_SITE_KEY and FLEET_TURNSTILE_SECRET_KEY in Hostinger.
+   Get both keys from the Turnstile widget configured for snaplabbooth.com.
+   The site key is used to display the challenge; the secret key is used
+   server-side to verify it. Login and signup remain unavailable until both
+   keys are configured.
+   Configure these SMTP environment variables in the Hostinger PHP
+   environment: FLEET_SMTP_HOST, FLEET_SMTP_USERNAME,
+   FLEET_SMTP_PASSWORD, and FLEET_SMTP_FROM_EMAIL. Optionally set
+   FLEET_SMTP_FROM_NAME, FLEET_SMTP_ENCRYPTION (tls or ssl), and
+   FLEET_SMTP_PORT (587 for tls or 465 for ssl). Use a sender address
+   authorized by the mail provider. Do not put SMTP credentials in public
+   files or source control. Email alerts and password recovery cannot send
+   until these settings are present and valid.
+6. Confirm the PHP user can read photobooth_config.php and connect to MySQL.
+   Open https://snaplabbooth.com/. The configured administrator
+   signs in with a blank email and the admin password. Owners can create
+   accounts with a unique email and a 12-72 character password.
+7. In the booth's Admin screen, copy its Device ID and device-specific
+   activation code. Sign in to the owner account, enter both in Register
+   booth, and submit. The server verifies the signed code and only allows
+   registered booths to report. Install app build 133 or newer and leave it
+   running with internet access; a newly registered booth appears immediately
+   as "Waiting for first report" and should show its status within about
+   15 seconds after the app's first successful report.
+
+PAYMONGO OWNER ACCOUNTS
+- Keep the parent PayMongo secret key in the protected server configuration.
+  Fleet creates one linked merchant child account per owner. The child
+  account ID is kept in the Fleet database and is never accepted from a booth
+  or returned to the browser.
+- Configure the parent-account identity-verification webhook in PayMongo to
+  POST to https://snaplabbooth.com/paymongo_identity_webhook.php and subscribe
+  to accounts.identity_verifications.passed and
+  accounts.identity_verifications.failed. The handler also accepts the
+  singular event spellings in older examples. Use the webhook signing secret
+  returned when creating the webhook; do not use the PayMongo API secret key
+  for webhook signature verification.
+- Set PAYMONGO_IDENTITY_WEBHOOK_SECRET in the Hostinger PHP environment, or
+  add the private config entry
+  'paymongo_identity_webhook_secret' => 'YOUR_WEBHOOK_SIGNING_SECRET'.
+  Never place that value in public files, the app, or source control. The
+  endpoint validates PayMongo's signature before updating the matching
+  owner's verification status and safely ignores duplicate events.
+- Owners sign in to Fleet and follow the PayMongo QR Ph account section:
+  create the linked merchant, submit the representative's ID/selfie, wait for
+  the webhook result, enter business details, and request activation. KYC
+  uploads are streamed from PHP temporary upload files to PayMongo; the site
+  does not save the image files or the submitted profile fields.
+- If an owner has an activated PayMongo child account, that owner's registered
+  booths route QR Ph payments to it. Otherwise, booths (including those not
+  registered in Fleet) continue to use the configured parent PayMongo
+  account, preserving existing checkout behavior. Payment Intent creation,
+  Payment Method creation, attachment, and status retrieval use the
+  appropriate parent or linked account scope. Orders retain the owner and
+  selected child ID (if any), so a status lookup cannot switch accounts or
+  owners.
+- PayMongo's linked-account APIs and API-only KYC must be enabled for the
+  parent account. KYC availability can be live-mode only; use the live parent
+  credentials and production webhook as required by PayMongo.
+
+DATABASE AND DATA
+- fleet_owners is the shared owner identity table. The administrator has the
+  reserved owner ID "admin"; Fleet accounts and their devices use the same
+  owner ID. The relationships migration preserves device owners without a
+  matching account as legacy owners instead of dropping their registrations.
+- MySQL foreign keys link accounts and device registrations to fleet_owners;
+  telemetry, settings, commands, and alerts to registered devices; password
+  reset tokens and weekly email reports to Fleet accounts; and PayMongo
+  webhook events to the account's PayMongo child ID. Device-scoped data and
+  reset/report/webhook rows are removed automatically only if their parent
+  row is explicitly deleted. Owner/account and device ownership deletion is
+  restricted while dependents remain.
+- MySQL stores accounts/password hashes, booth ownership and active status,
+  latest telemetry/sales snapshots, and hashed-IP login/signup rate limits.
+- Telemetry uses one latest snapshot per device, preserving first-seen and
+  updating last-seen. No photos, customer data, local admin password, payment
+  credentials, or activation codes are stored in MySQL.
+- Use Hostinger's database backup/export tools routinely. Restore test exports
+  only into a separate database.
+- The local demo uses a separate XAMPP MySQL database populated with synthetic
+  booth data. Do not import those demo fixtures into the hosted database.
+  When updating a live deployment, preserve its registered devices and
+  account records; updating PHP files does not require dropping database data.
+- When the database is unavailable or not configured, the endpoints return
+  an explicit service error and do not fall back to JSON files.
+
+SECURITY AND OPERATION
+- Do not disable HTTPS or remove the private directory's access-denial rule.
+- Use a dedicated MySQL user with access only to this fleet database.
+- The public owner sign-up is rate-limited by source IP. Activation codes are
+  verified and are never stored.
+- Owner dashboards show only their own active booths; the administrator sees
+  the whole fleet. Unregistering blocks reports and hides the booth, but keeps
+  its history reserved to the same owner. An ownership transfer must be
+  arranged by the administrator.
+- Email verification is not configured. New owners receive a welcome email
+  after signup; password recovery also requires working SMTP settings.
+  Delivery failures are logged and do not undo a successful signup.
+- The telemetry endpoint emails an owner when their booth's camera becomes
+  unavailable, its ESP32 disconnects, or its configured printer reports a
+  problem. Each issue is sent once per state change; an informational email
+  is sent when it clears. Failed deliveries are retried after five minutes
+  while the booth continues reporting. Delivery failures are logged.
+- The app sends a fleet status heartbeat immediately on activation and about
+  every 15 seconds while running and online. It also reports immediately when
+  Bluetooth adapter status or a successful ESP32 connection changes. The
+  dashboard refreshes every five seconds, displays ESP32 state as unknown
+  when telemetry is stale, and marks a booth offline after 90 seconds without
+  a report.
+- The dashboard can queue app-restart/device-reboot commands and booth-theme,
+  welcome-message, idle-timeout, photo-count, and paired-printer settings for
+  an owner's registered device. Commands and settings are delivered only
+  when the activated booth app is online. Android reboot requires the app to
+  be enrolled as device owner; otherwise Android rejects the command.
+- Device location is opt-in on the booth in Admin settings and requires
+  Location services plus Android while-in-use permission. The app sends
+  location only while open. The latest coordinates and accuracy are stored
+  with telemetry and shown on the fleet map. Disabling sharing or revoking
+  permission stops new location reports.
+- A copied signed activation license could be replayed to falsify telemetry,
+  so sales are operational data, not audited accounting.
+- If the API returns fleet_database_not_configured, check the four DB config
+  values. For fleet_database_unavailable, check the Hostinger DB host/user,
+  permissions, and that the schema was imported. If it returns
+  server_ed25519_support_unavailable or activation_required, check Sodium and
+  the matching activation public key.
+- For rollback, restore the previous fleet PHP files and config backup.
+  MySQL tables remain intact unless you deliberately remove them in phpMyAdmin.

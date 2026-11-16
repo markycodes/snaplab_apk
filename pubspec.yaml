@@ -1,0 +1,52 @@
+name: photobooth_kiosk
+description: "A coin-operated Android photobooth with BLE ESP32 payment and kiosk mode."
+publish_to: 'none'
+version: 1.0.0+310
+
+environment:
+  sdk: ^3.13.4
+
+dependencies:
+  android_file_picker: ^2.1.1
+  camera: ^0.12.1
+  cryptography: ^2.9.0
+  file_picker: ^13.1.0
+  flutter:
+    sdk: flutter
+  flutter_reactive_ble: 5.4.2
+  geolocator: ^14.0.1
+  http: ^1.6.0
+  image: ^4.12.0
+  path_provider: ^2.1.6
+  permission_handler: 12.0.1
+  qr_flutter: ^4.1.0
+  shared_preferences: ^2.5.6
+  video_player: ^2.14.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+dependency_overrides:
+  reactive_ble_mobile: 5.5.0
+  reactive_ble_platform_interface: 5.5.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/photobooth_logo.png
+    - assets/ready_for_photo.png
+    - assets/tap_anywhere.png
+    - assets/tap_to_start.png
+    - assets/printer_slot.png
+    - assets/frames/
+    - assets/ai_style_examples/
+  fonts:
+    - family: RobotoMono
+      fonts:
+        - asset: assets/fonts/RobotoMono-Variable.ttf
+    - family: DancingScript
+      fonts:
+        - asset: assets/fonts/DancingScript-Bold.ttf
+          weight: 700

@@ -1,0 +1,63 @@
+SnapLab AI Cartoon setup
+========================
+
+The AI Cartoon option uploads the selected photo to SnapLab's HTTPS endpoint.
+The endpoint submits it to Replicate, waits for the generated JPEG, and returns
+the image to the app. The Replicate API token must remain on the server.
+
+Hostinger deployment
+--------------------
+
+1. Upload pb_cartoon.php, pb_upload_auth.php, and the updated pb_auth.php into
+   the same photobooth directory as pb_upload.php.
+2. Deploy the updated photobooth_private/photobooth_config.php.
+3. Configure REPLICATE_API_TOKEN in Hostinger's server environment. If the
+   hosting plan does not expose environment variables to PHP, set the value
+   directly in photobooth_config.php, which must remain private and must never
+   be copied into the Flutter app or APK.
+4. Optionally set REPLICATE_CARTOON_MODEL and
+   REPLICATE_CARTOON_HOURLY_LIMIT. The defaults are
+   black-forest-labs/flux-kontext-pro and 20 generations per activated device
+   per hour.
+5. Ensure the private directory is writable by PHP so it can maintain
+   ai_cartoon_limits.json, and that PHP has cURL and getimagesize available.
+6. Configure PHP's upload_max_filesize and post_max_size to allow at least 7 MB.
+   The endpoint itself accepts photos up to 6 MB and 4096 x 4096 pixels.
+7. Test a real request only after the Replicate token is configured. Each
+   successful generation may incur charges under the Replicate account.
+8. Cartoon generation must be enabled with
+   'replicate_cartoon_enabled' => true after adding Replicate credits and
+   confirming the token and model are configured.
+
+After changing the cartoon prompt or server configuration, upload the updated
+pb_cartoon.php or photobooth_config.php to the same matching server paths.
+These server-side changes do not require a new APK.
+Each requested style has its own explicit style-locked prompt. The endpoint
+returns the selected style in the X-SnapLab-AI-Style response header; the app
+rejects generated images from older server versions that do not confirm the
+requested style. Upload this updated pb_cartoon.php before using the updated
+APK. Prompts prioritize expression accuracy, including asymmetric eyelids,
+closed eyes, winks, gaze, and mouth shape. The app preserves input photo detail
+up to 2048 pixels on its longest side before upload. The Chibi style converts the input photo's
+actual subjects into chibi proportions, matching the kind of look shown by the
+UI sample without asking the model to reproduce the sample's character or
+scene. Prompts also require subjects and important objects to keep their
+original apparent size, position, crop, and spacing in the frame. Image models
+may not follow every visual instruction perfectly.
+
+Paid AI photo styles can be enabled in the booth Admin settings. Customers
+choose an example style after the original photo is printed, pay using an
+enabled coin or PayMongo QR PH method, then request Anime, Pencil Sketch,
+3D Cartoon, Chibi, Pop Art, or Line Art. AI conversion works with every
+supported photo count from one through five. One payment converts every photo
+in the session, and Admin has an independent price for each photo count. The
+app sends each captured image through the selected AI style separately, then
+rebuilds the finished print with
+the original crop, layout, frame, and decorations. This keeps generated images
+inside their photo openings instead of letting the AI redraw or overrun the
+frame. The selected photo-count price is used for either coin or QR PH checkout.
+The app sends the selected style key with every photo request. Upload
+this updated pb_cartoon.php to Hostinger when deploying the style selector;
+older server copies do not accept style keys or confirm the returned style.
+AI processing requires an internet connection. The existing local Cartoon
+filter remains available for capture effects.

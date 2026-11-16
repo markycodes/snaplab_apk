@@ -1,0 +1,26 @@
+Add these rules at the top of the existing public_html/.htaccess file.
+Do not replace the existing file. The public Fleet landing page opens at the domain root.
+The /login and /register routes work without showing a .php extension. Old
+/login.php and /register.php links redirect to their clean URLs. Fleet and PayMongo
+API routes continue to work without a .php extension.
+
+RewriteEngine On
+
+RewriteCond %{THE_REQUEST} \s/+pb_fleet\.php(?:[?\s]) [NC]
+RewriteRule ^pb_fleet\.php$ / [R=302,L]
+
+RewriteCond %{THE_REQUEST} \s/+login\.php(?:[?\s]) [NC]
+RewriteRule ^login\.php$ /login [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+register\.php(?:[?\s]) [NC]
+RewriteRule ^register\.php$ /register [R=301,L]
+
+RewriteRule ^login/?$ pb_fleet.php?view=login [L,QSA]
+RewriteRule ^register/?$ pb_fleet.php?view=register [L,QSA]
+RewriteRule ^$ pb_fleet.php [L]
+RewriteRule ^pb_fleet_api$ pb_fleet_api.php [L,QSA]
+RewriteRule ^pb_auth$ pb_auth.php [L,QSA]
+RewriteRule ^pb_upload$ pb_upload.php [L,QSA]
+RewriteRule ^pb_download$ pb_download.php [L,QSA]
+RewriteRule ^paymongo_checkout$ paymongo_checkout.php [L,QSA]
+RewriteRule ^paymongo_status$ paymongo_status.php [L,QSA]
+RewriteRule ^paymongo_identity_webhook$ paymongo_identity_webhook.php [L,QSA]

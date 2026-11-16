@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Snap Lab</string>
+    <string name="device_admin_description">Keeps this tablet dedicated to the photobooth app.</string>
+</resources>

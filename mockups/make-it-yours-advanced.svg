@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100vw" height="100vh" viewBox="0 0 900 1600" preserveAspectRatio="xMidYMid meet" style="display:block;overflow:hidden" role="img" aria-labelledby="title description">
+  <title id="title">SnapLab Make it yours — portrait four-photo strip concept</title>
+  <desc id="description">Portrait tablet photo editing concept showing a large, legible four-photo strip preview, visual editing choices, and clear navigation.</desc>
+  <defs>
+    <linearGradient id="page" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6f8fa"/>
+      <stop offset="1" stop-color="#eaf0f4"/>
+    </linearGradient>
+    <linearGradient id="photoBg" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#a8cbd3"/>
+      <stop offset=".58" stop-color="#4c788d"/>
+      <stop offset="1" stop-color="#233e52"/>
+    </linearGradient>
+    <linearGradient id="next" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#456b82"/>
+      <stop offset="1" stop-color="#34566d"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="13" flood-color="#213746" flood-opacity=".10"/>
+    </filter>
+    <clipPath id="strip1"><rect x="300" y="417" width="300" height="100" rx="8"/></clipPath>
+    <clipPath id="strip2"><rect x="300" y="529" width="300" height="100" rx="8"/></clipPath>
+    <clipPath id="strip3"><rect x="300" y="641" width="300" height="100" rx="8"/></clipPath>
+    <clipPath id="strip4"><rect x="300" y="753" width="300" height="100" rx="8"/></clipPath>
+    <clipPath id="thumb1"><rect x="94" y="1079" width="194" height="112" rx="14"/></clipPath>
+    <clipPath id="thumb2"><rect x="353" y="1079" width="194" height="112" rx="14"/></clipPath>
+    <clipPath id="thumb3"><rect x="612" y="1079" width="194" height="112" rx="14"/></clipPath>
+    <clipPath id="thumb4"><rect x="94" y="1277" width="194" height="112" rx="14"/></clipPath>
+    <clipPath id="thumb5"><rect x="353" y="1277" width="194" height="112" rx="14"/></clipPath>
+    <clipPath id="thumb6"><rect x="612" y="1277" width="194" height="112" rx="14"/></clipPath>
+    <g id="person">
+      <path d="M288 798c12-116 70-176 166-176s154 60 166 176H288Z" fill="#e1e4df"/>
+      <path d="M389 625h130l-17 58-48 38-48-38-17-58Z" fill="#d9b6a4"/>
+      <ellipse cx="454" cy="500" rx="128" ry="153" fill="#905b45"/>
+      <path d="M328 490c-13-127 50-192 139-192 91 0 143 66 134 185-23-23-46-62-61-98-53 38-123 61-211 60l-1 45Z" fill="#201a19"/>
+      <path d="M328 462c-14 52-6 106 10 132l18-11-6-104-22-17Zm252 0c14 52 6 106-10 132l-18-11 6-104 22-17Z" fill="#302321"/>
+      <path d="M382 497c16-12 35-12 51 0m49 0c16-12 35-12 51 0" fill="none" stroke="#38241f" stroke-width="8" stroke-linecap="round"/>
+      <ellipse cx="408" cy="522" rx="9" ry="11" fill="#211b1a"/>
+      <ellipse cx="504" cy="522" rx="9" ry="11" fill="#211b1a"/>
+      <path d="M455 519c-6 25-15 48-10 54 4 6 15 6 23 3" fill="none" stroke="#744633" stroke-width="6" stroke-linecap="round"/>
+      <path d="M419 590c24 20 53 20 77-1" fill="none" stroke="#632e2a" stroke-width="7" stroke-linecap="round"/>
+      <path d="M431 591c17 9 37 9 54-1" fill="none" stroke="#fff1e9" stroke-width="3.5" stroke-linecap="round"/>
+      <ellipse cx="371" cy="556" rx="17" ry="9" fill="#bc7862" opacity=".42"/>
+      <ellipse cx="537" cy="556" rx="17" ry="9" fill="#bc7862" opacity=".42"/>
+    </g>
+  </defs>
+
+  <rect width="900" height="1600" fill="#101a22"/>
+  <rect x="18" y="18" width="864" height="1564" rx="34" fill="url(#page)"/>
+
+  <path d="M52 67c0-15 12-27 27-27h742c15 0 27 12 27 27v25H52V67Z" fill="#17232c"/>
+  <circle cx="78" cy="66" r="5" fill="#ff6d66"/>
+  <circle cx="96" cy="66" r="5" fill="#f3bd55"/>
+  <circle cx="114" cy="66" r="5" fill="#62c887"/>
+  <text x="450" y="71" text-anchor="middle" fill="#ced7dd" font-family="Inter, Arial, sans-serif" font-size="12" letter-spacing="1.5">SNAPLAB PHOTO EDITOR</text>
+  <text x="846" y="71" text-anchor="end" fill="#ced7dd" font-family="Inter, Arial, sans-serif" font-size="12">8:34 PM · 39%</text>
+
+  <rect x="52" y="113" width="796" height="112" rx="24" fill="#ffffff" filter="url(#shadow)"/>
+  <rect x="76" y="137" width="62" height="62" rx="19" fill="#eaf2f8"/>
+  <path d="m93 169 5-2 2-5 2 5 5 2-5 2-2 5-2-5-5-2Zm20-13 3-1 1-3 1 3 3 1-3 1-1 3-1-3-3-1Z" fill="#45697f"/>
+  <text x="159" y="164" fill="#142331" font-family="Georgia, serif" font-style="italic" font-size="32" font-weight="700">Make it yours</text>
+  <text x="161" y="191" fill="#6b7883" font-family="Inter, Arial, sans-serif" font-size="15">Personalize your photo in a few easy steps.</text>
+  <rect x="693" y="145" width="130" height="44" rx="15" fill="#f1f5f7"/>
+  <circle cx="713" cy="167" r="5" fill="#45697f"/>
+  <text x="727" y="172" fill="#45697f" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800">4-PHOTO STRIP</text>
+
+  <rect x="52" y="244" width="796" height="60" rx="18" fill="#ffffff" opacity=".9"/>
+  <circle cx="96" cy="274" r="15" fill="#45697f"/>
+  <path d="m89 274 5 5 9-10" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="120" y="279" fill="#45697f" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">Capture</text>
+  <path d="M190 274h149" stroke="#c6d3db" stroke-width="2"/>
+  <circle cx="367" cy="274" r="15" fill="#45697f"/>
+  <text x="367" y="279" text-anchor="middle" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800">2</text>
+  <text x="390" y="279" fill="#263e4d" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800">Make it yours</text>
+  <path d="M508 274h121" stroke="#d7e0e5" stroke-width="2"/>
+  <circle cx="657" cy="274" r="15" fill="#e7edf1"/>
+  <text x="657" y="279" text-anchor="middle" fill="#77858f" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800">3</text>
+  <text x="680" y="279" fill="#7c8992" font-family="Inter, Arial, sans-serif" font-size="13">Review</text>
+
+  <rect x="52" y="325" width="796" height="1156" rx="26" fill="#ffffff" filter="url(#shadow)"/>
+  <text x="78" y="365" fill="#1e303c" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="800">4-PHOTO STRIP PREVIEW</text>
+  <rect x="318" y="384" width="264" height="1056" rx="18" fill="#f2f5f7" stroke="#dce4e9" stroke-width="2"/>
+  <text x="450" y="412" text-anchor="middle" fill="#687984" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700">FULL STRIP · 4 PHOTOS</text>
+  <rect x="350" y="430" width="200" height="948" rx="12" fill="#fff" stroke="#d1dce3" stroke-width="2"/>
+  <g>
+    <rect x="363" y="443" width="174" height="220" rx="8" fill="#8bb4c0"/>
+    <circle cx="500" cy="463" r="42" fill="#dbe9df" opacity=".55"/>
+    <path d="M363 601c46-29 82-8 113-27 29-18 38-32 61-20v109H363v-62Z" fill="#34586a"/>
+    <use href="#person" transform="translate(265 478) scale(.30)"/>
+    <rect x="374" y="454" width="35" height="24" rx="8" fill="#ffffff" opacity=".96"/>
+    <text x="391" y="471" text-anchor="middle" fill="#34586a" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="800">01</text>
+  </g>
+  <g>
+    <rect x="363" y="675" width="174" height="220" rx="8" fill="#6593a5"/>
+    <circle cx="393" cy="700" r="39" fill="#d5e0dc" opacity=".45"/>
+    <path d="M363 833c45-23 76-5 112-22 30-14 41-34 62-20v104H363v-62Z" fill="#294a60"/>
+    <use href="#person" transform="translate(265 710) scale(.30)"/>
+    <rect x="374" y="686" width="35" height="24" rx="8" fill="#ffffff" opacity=".96"/>
+    <text x="391" y="703" text-anchor="middle" fill="#34586a" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="800">02</text>
+  </g>
+  <g>
+    <rect x="363" y="907" width="174" height="220" rx="8" fill="#6c9eac"/>
+    <circle cx="500" cy="935" r="44" fill="#e1e9df" opacity=".42"/>
+    <path d="M363 1065c48-30 83-7 114-27 28-17 39-33 60-20v109H363v-62Z" fill="#294a60"/>
+    <use href="#person" transform="translate(265 942) scale(.30)"/>
+    <rect x="374" y="918" width="35" height="24" rx="8" fill="#ffffff" opacity=".96"/>
+    <text x="391" y="935" text-anchor="middle" fill="#34586a" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="800">03</text>
+  </g>
+  <g>
+    <rect x="363" y="1139" width="174" height="220" rx="8" fill="#84aeb4"/>
+    <circle cx="394" cy="1166" r="41" fill="#e1e8dc" opacity=".48"/>
+    <path d="M363 1296c47-25 79-11 112-28 31-15 42-31 62-18v109H363v-63Z" fill="#25475c"/>
+    <use href="#person" transform="translate(265 1174) scale(.30)"/>
+    <rect x="374" y="1150" width="35" height="24" rx="8" fill="#ffffff" opacity=".96"/>
+    <text x="391" y="1167" text-anchor="middle" fill="#34586a" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="800">04</text>
+  </g>
+
+  <rect x="72" y="399" width="218" height="548" rx="22" fill="#f5f7f8"/>
+  <text x="94" y="433" fill="#687984" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="800" letter-spacing=".8">EDIT TOOLS</text>
+  <rect x="86" y="453" width="190" height="132" rx="18" fill="#45697f"/>
+  <rect x="145" y="470" width="72" height="52" rx="16" fill="#ffffff" opacity=".15"/>
+  <path d="m164 497 8-3 3-8 3 8 8 3-8 3-3 8-3-8-8-3Zm27-13 4-2 2-4 2 4 4 2-4 1-2 5-2-5-4-1Z" fill="#fff"/>
+  <text x="181" y="551" text-anchor="middle" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">LOOKS</text>
+  <text x="181" y="570" text-anchor="middle" fill="#d8e6ed" font-family="Inter, Arial, sans-serif" font-size="11">Color &amp; style</text>
+  <rect x="86" y="601" width="190" height="132" rx="18" fill="#ffffff" stroke="#dce4e9" stroke-width="2"/>
+  <rect x="145" y="618" width="72" height="52" rx="16" fill="#eaf2f8"/>
+  <path d="M163 650c0-11 8-20 18-20s18 9 18 20v5h-36v-5Zm14-27 2-7 3 7" fill="none" stroke="#45697f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="181" y="699" text-anchor="middle" fill="#304653" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">DECOR</text>
+  <text x="181" y="718" text-anchor="middle" fill="#7b8992" font-family="Inter, Arial, sans-serif" font-size="11">Stickers &amp; extras</text>
+  <rect x="86" y="749" width="190" height="132" rx="18" fill="#ffffff" stroke="#dce4e9" stroke-width="2"/>
+  <rect x="145" y="766" width="72" height="52" rx="16" fill="#eaf2f8"/>
+  <rect x="165" y="774" width="33" height="36" rx="4" fill="none" stroke="#45697f" stroke-width="3"/>
+  <rect x="170" y="780" width="23" height="20" rx="2" fill="#abc7d1"/>
+  <text x="181" y="847" text-anchor="middle" fill="#304653" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">FRAMES</text>
+  <text x="181" y="866" text-anchor="middle" fill="#7b8992" font-family="Inter, Arial, sans-serif" font-size="11">Choose a layout</text>
+
+  <rect x="610" y="399" width="218" height="548" rx="22" fill="#f5f7f8"/>
+  <text x="632" y="433" fill="#1e303c" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">Choose a look</text>
+  <text x="632" y="456" fill="#7a8791" font-family="Inter, Arial, sans-serif" font-size="11">Tap to preview</text>
+  <rect x="628" y="476" width="182" height="92" rx="15" fill="#ffffff" stroke="#45697f" stroke-width="3"/>
+  <rect x="638" y="486" width="65" height="72" rx="9" fill="#7396a1"/>
+  <circle cx="689" cy="499" r="19" fill="#dbe9df" opacity=".55"/>
+  <ellipse cx="669" cy="522" rx="16" ry="19" fill="#905b45"/>
+  <path d="M653 519c-2-17 7-25 18-25 12 0 18 9 17 24l-7-8-20 1-7 8Z" fill="#201a19"/>
+  <text x="714" y="519" fill="#2c4553" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800">Original</text>
+  <text x="714" y="539" fill="#8a969e" font-family="Inter, Arial, sans-serif" font-size="10">Selected</text>
+  <rect x="628" y="582" width="182" height="92" rx="15" fill="#ffffff" stroke="#e0e6ea" stroke-width="1.5"/>
+  <rect x="638" y="592" width="65" height="72" rx="9" fill="#5b889b"/>
+  <circle cx="689" cy="605" r="19" fill="#e8cc9b" opacity=".48"/>
+  <ellipse cx="669" cy="628" rx="16" ry="19" fill="#905b45"/>
+  <path d="M653 625c-2-17 7-25 18-25 12 0 18 9 17 24l-7-8-20 1-7 8Z" fill="#201a19"/>
+  <rect x="638" y="592" width="65" height="72" rx="9" fill="#e3ad52" opacity=".17"/>
+  <text x="714" y="625" fill="#536671" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700">Warm</text>
+  <rect x="628" y="688" width="182" height="92" rx="15" fill="#ffffff" stroke="#e0e6ea" stroke-width="1.5"/>
+  <rect x="638" y="698" width="65" height="72" rx="9" fill="#a5a39a"/>
+  <circle cx="689" cy="711" r="19" fill="#d8d1c5" opacity=".4"/>
+  <ellipse cx="669" cy="734" rx="16" ry="19" fill="#905b45"/>
+  <path d="M653 731c-2-17 7-25 18-25 12 0 18 9 17 24l-7-8-20 1-7 8Z" fill="#201a19"/>
+  <rect x="638" y="698" width="65" height="72" rx="9" fill="#352c23" opacity=".25"/>
+  <text x="714" y="731" fill="#536671" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700">Matte</text>
+  <rect x="628" y="794" width="182" height="92" rx="15" fill="#ffffff" stroke="#e0e6ea" stroke-width="1.5"/>
+  <rect x="638" y="804" width="65" height="72" rx="9" fill="#8c7c75"/>
+  <circle cx="689" cy="817" r="19" fill="#e8c4ac" opacity=".35"/>
+  <ellipse cx="669" cy="840" rx="16" ry="19" fill="#905b45"/>
+  <path d="M653 837c-2-17 7-25 18-25 12 0 18 9 17 24l-7-8-20 1-7 8Z" fill="#201a19"/>
+  <rect x="638" y="804" width="65" height="72" rx="9" fill="#6f3a43" opacity=".2"/>
+  <text x="714" y="837" fill="#536671" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700">Rose</text>
+
+  <text x="450" y="970" text-anchor="middle" fill="#65747e" font-family="Inter, Arial, sans-serif" font-size="12">Tap a tool on the left; its options appear on the right.</text>
+
+  <rect x="52" y="1500" width="796" height="58" rx="20" fill="#ffffff" filter="url(#shadow)"/>
+  <rect x="72" y="1508" width="104" height="42" rx="14" fill="#ffffff" stroke="#dce4e9" stroke-width="2"/>
+  <path d="m128 1529-7-7-7 7m7-7v16" fill="none" stroke="#324b5a" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="94" y="1534" fill="#576873" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800">BACK</text>
+  <rect x="188" y="1508" width="400" height="42" rx="14" fill="url(#next)"/>
+  <text x="388" y="1535" text-anchor="middle" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="800">NEXT: DECOR</text>
+  <path d="m554 1529 9 0m-5-5 5 5-5 5" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="600" y="1508" width="228" height="42" rx="14" fill="#e9eef1"/>
+  <text x="714" y="1535" text-anchor="middle" fill="#61717b" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800">RESET</text>
+</svg>
